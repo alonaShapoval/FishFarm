@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
         mLinearLayoutWaterMeasuring.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent=new Intent(MainActivity.this,WaterConditionActivity.class);
+                startActivity(intent);
             }
         });
 
