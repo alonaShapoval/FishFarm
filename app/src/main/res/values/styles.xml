@@ -11,4 +11,9 @@
         <item name="colorAccent">@color/blue</item>
         //@android:color/holo_green_light
     </style>
+    <style name="HorizontalProgress" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="colorAccent">@color/blue</item>
+        <item name="android:centerColor">@color/blue</item>
+
+    </style>
 </resources>

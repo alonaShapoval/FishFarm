@@ -25,7 +25,8 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".TemperatureActivity" />
-        <activity android:name=".WaterConditionActivity"></activity>
+        <activity android:name=".WaterConditionActivity" />
+        <activity android:name=".FeedActivity"></activity>
     </application>
 
 </manifest>

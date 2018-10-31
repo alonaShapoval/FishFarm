@@ -46,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
         mLinearLayoutFeeding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(MainActivity.this, FeedActivity.class);
+                startActivity(intent);
             }
         });
 

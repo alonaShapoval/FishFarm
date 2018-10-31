@@ -6,14 +6,19 @@
     <string name="feed">Погодувати</string>
     <string name="spawning">Нерест</string>
     <string name="title_activity_login">Sign in</string>
-    
+
     <!-- Strings related to TemperatureActivity -->
     <string name="measure">Виміряти</string>
-    
+
     <!-- Strings related to WaterConditioActivity -->
     <string name="date_last_change">Дата останньої \nзміни води</string>
     <string name="change_data">Змінити дату</string>
     <string name="measure_oxygen">Виміряти \nрівень кисню</string>
+
+    <!-- Strings related to FeedActivity -->
+    <string name="last_feed_date">Дата останнього \nгодування</string>
+    <string name="fed">Погодовано!</string>
+
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
