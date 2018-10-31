@@ -1,5 +1,7 @@
 package com.bignerdranch.android.fishfarm;
 
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +9,7 @@ import android.widget.*;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Date;
@@ -18,31 +21,38 @@ public class TemperatureActivity extends AppCompatActivity {
     ProgressBar mProgressBar;
     @BindView(R.id.measure)
     Button mButtonTemperatureMeasuring;
-    final Timer timer = new Timer();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_temperature);
         ButterKnife.bind(this);
-       final TimerTask task = new TimerTask() {
-            public void run() {
-                mProgressBar.setVisibility(View.INVISIBLE);
-            }
-        };
-
-
-        final long delay = 1000L;
 
         mButtonTemperatureMeasuring.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mProgressBar.setVisibility(View.VISIBLE);
                 mProgressBar.setIndeterminate(true);
-                timer.schedule(task, delay);
-                mTextViewDegreeTemperature.setText("15 C");
+
+                final Handler h = new Handler() {
+                    @Override
+                    public void handleMessage(Message message) {
+                        mTextViewDegreeTemperature.setText(measureTemperature());
+
+                        mProgressBar.setVisibility(View.INVISIBLE);
+                    }
+                };
+                h.sendMessageDelayed(new Message(), 1000);
+
+
             }
         });
 
     }
+
+    public String measureTemperature() {
+        return "15 C";
+    }
+
 }

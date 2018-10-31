@@ -1,7 +1,10 @@
 package com.bignerdranch.android.fishfarm;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateUtils;
@@ -20,42 +23,34 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class WaterConditionActivity extends AppCompatActivity {
-@BindView(R.id.measure_oxygen)
-Button mButtonMeasureOxygen;
-@BindView(R.id.date)
+    static final int DATE_DIALOG_ID = 999;
+    @BindView(R.id.measure_oxygen)
+    Button mButtonMeasureOxygen;
+    @BindView(R.id.date)
     TextView mTextViewDate;
-@BindView(R.id.change_date)
-Button mButtonChangeDate;
-@BindView(R.id.oxygen_data)
-TextView mTextViewOxygenData;
-@BindView(R.id.progress_bar)
+    @BindView(R.id.change_date)
+    Button mButtonChangeDate;
+    @BindView(R.id.oxygen_data)
+    TextView mTextViewOxygenData;
+    @BindView(R.id.progress_bar)
     ProgressBar mProgressBar;
 
-    Calendar dateAndTime=Calendar.getInstance();
+    private int mYear, mMonth, mDay, mHour, mMinute;
+
+
     final Timer timer = new Timer();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_water_condition);
         ButterKnife.bind(this);
-        final TimerTask task = new TimerTask() {
-            public void run() {
-                mProgressBar.setVisibility(View.INVISIBLE);
-            }
-        };
 
-
-        final long delay = 1000L;
-        mButtonMeasureOxygen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mTextViewOxygenData.setText(measureOxygen());
-            }
-        });
+setInitialDate();
         mButtonChangeDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setInitialDate();
+                chooseDate();
             }
         });
         mButtonMeasureOxygen.setOnClickListener(new View.OnClickListener() {
@@ -63,42 +58,54 @@ TextView mTextViewOxygenData;
             public void onClick(View view) {
                 mProgressBar.setVisibility(View.VISIBLE);
                 mProgressBar.setIndeterminate(true);
-                timer.schedule(task, delay);
+                final Handler h = new Handler() {
+                    @Override
+                    public void handleMessage(Message message) {
+                        mTextViewOxygenData.setText(measureOxygen());
+
+                        mProgressBar.setVisibility(View.INVISIBLE);
+                    }
+                };
+                h.sendMessageDelayed(new Message(), 1000);
+
+
             }
         });
     }
-    public String measureOxygen(){
+
+    public String measureOxygen() {
         return "30%";
     }
-    // отображаем диалоговое окно для выбора даты
-    public void setDate(View v) {
-        new DatePickerDialog(WaterConditionActivity.this, d,
-                dateAndTime.get(Calendar.YEAR),
-                dateAndTime.get(Calendar.MONTH),
-                dateAndTime.get(Calendar.DAY_OF_MONTH))
-                .show();
+
+    public void setInitialDate() {
+        final Calendar calendar = Calendar.getInstance();
+        mYear = calendar.get(Calendar.YEAR);
+        mMonth = calendar.get(Calendar.MONTH);
+        mDay = calendar.get(Calendar.DAY_OF_MONTH);
+        mTextViewDate.setText(mDay + "-" + (mMonth + 1) + "-" + mYear);
+    }
+
+    public void chooseDate() {
+        final Calendar calendar = Calendar.getInstance();
+        mYear = calendar.get(Calendar.YEAR);
+        mMonth = calendar.get(Calendar.MONTH);
+        mDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+
+                        mTextViewDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
+                    }
+                }, mYear, mMonth, mDay);
+        datePickerDialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+        datePickerDialog.show();
     }
 
 
-    // установка начальных даты и времени
-    private void setInitialDate() {
-
-//        mTextViewDate.setText(DateUtils.formatDateTime(this,
-//                dateAndTime.getTimeInMillis(),
-//                DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR
-//                        | DateUtils.FORMAT_SHOW_TIME));
-        mTextViewDate.setText(dateAndTime.get(Calendar.DATE));
-    }
-
-
-
-    // установка обработчика выбора даты
-    DatePickerDialog.OnDateSetListener d=new DatePickerDialog.OnDateSetListener() {
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            dateAndTime.set(Calendar.YEAR, year);
-            dateAndTime.set(Calendar.MONTH, monthOfYear);
-            dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            setInitialDate();
-        }
-    };
 }

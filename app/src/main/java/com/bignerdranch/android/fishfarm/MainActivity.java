@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         mLinearLayoutTemperatureMeasuring.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,TemperatureActivity.class);
+                Intent intent = new Intent(MainActivity.this, TemperatureActivity.class);
                 startActivity(intent);
             }
         });
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         mLinearLayoutWaterMeasuring.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,WaterConditionActivity.class);
+                Intent intent = new Intent(MainActivity.this, WaterConditionActivity.class);
                 startActivity(intent);
             }
         });

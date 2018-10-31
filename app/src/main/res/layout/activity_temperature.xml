@@ -5,37 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.bignerdranch.android.fishfarm.TemperatureActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <ImageView
             android:layout_width="200dp"
             android:layout_height="300dp"
-            android:src="@drawable/temperature"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:src="@drawable/temperature" />
+
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:theme="@style/CircularProgress"
             android:layout_gravity="center"
-            android:visibility="invisible"
-            />
+            android:theme="@style/CircularProgress"
+            android:visibility="invisible" />
+
         <TextView
             android:id="@+id/degree_temperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/blue"
-            android:textSize="25sp"
             android:layout_gravity="center"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/blue"
+            android:textSize="25sp" />
+
         <Button
             android:id="@+id/measure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:background="@drawable/button_border"
-            android:text="@string/measure"
-            android:layout_gravity="center"/>
+            android:text="@string/measure" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
