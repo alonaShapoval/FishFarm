@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
         mLinearLayoutSpawning.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(MainActivity.this, SpawningActivity.class);
+                startActivity(intent);
             }
         });
 

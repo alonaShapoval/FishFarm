@@ -10,6 +10,7 @@ import android.widget.*;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Date;
@@ -21,6 +22,9 @@ public class TemperatureActivity extends AppCompatActivity {
     ProgressBar mProgressBar;
     @BindView(R.id.measure)
     Button mButtonTemperatureMeasuring;
+    @BindView(R.id.choose_pool)
+    Spinner mSpinnerChoosePool;
+    ArrayList<String> pools=new ArrayList<>();
 
 
     @Override
@@ -28,6 +32,8 @@ public class TemperatureActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_temperature);
         ButterKnife.bind(this);
+        pools.add("Басейн №1");
+        pools.add("Басейн №2");
 
         mButtonTemperatureMeasuring.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,7 +41,7 @@ public class TemperatureActivity extends AppCompatActivity {
                 mProgressBar.setVisibility(View.VISIBLE);
                 mProgressBar.setIndeterminate(true);
 
-                final Handler h = new Handler() {
+               final Handler h = new Handler() {
                     @Override
                     public void handleMessage(Message message) {
                         mTextViewDegreeTemperature.setText(measureTemperature());
@@ -48,6 +54,10 @@ public class TemperatureActivity extends AppCompatActivity {
 
             }
         });
+        ArrayAdapter<String> adapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,pools);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerChoosePool.setAdapter(adapter);
+
 
     }
 

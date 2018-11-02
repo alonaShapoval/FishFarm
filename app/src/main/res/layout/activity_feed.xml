@@ -41,6 +41,13 @@
         android:max="100"
         android:progress="10"
         />
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:id="@+id/choose_pool"
+        />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

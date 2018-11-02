@@ -6,12 +6,15 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -32,6 +35,9 @@ Button mButtonFeed;
     static String lastDateFeed="31-10-2018\n22:17:44";
 //    @BindView(R.id.show_that_fed)
 //    TextView mTextViewShowFed;
+@BindView(R.id.choose_pool)
+Spinner mSpinnerChoosePool;
+    ArrayList<String> pools=new ArrayList<>();
 
 
     @Override
@@ -39,6 +45,8 @@ Button mButtonFeed;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
         ButterKnife.bind(this);
+        pools.add("Басейн №1");
+        pools.add("Басейн №2");
         mTextViewFeedDate.setText(lastDateFeed);
         mButtonFeed.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +89,9 @@ Button mButtonFeed;
                 t.start();
             }
        });
+        ArrayAdapter<String> adapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,pools);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerChoosePool.setAdapter(adapter);
 
     }
     public void feedFish(){

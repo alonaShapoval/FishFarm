@@ -9,12 +9,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -37,7 +40,9 @@ public class WaterConditionActivity extends AppCompatActivity {
 
     private int mYear, mMonth, mDay, mHour, mMinute;
 
-
+    @BindView(R.id.choose_pool)
+    Spinner mSpinnerChoosePool;
+    ArrayList<String> pools=new ArrayList<>();
     final Timer timer = new Timer();
 
     @Override
@@ -45,6 +50,8 @@ public class WaterConditionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_water_condition);
         ButterKnife.bind(this);
+        pools.add("Басейн №1");
+        pools.add("Басейн №2");
 
 setInitialDate();
         mButtonChangeDate.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +78,9 @@ setInitialDate();
 
             }
         });
+        ArrayAdapter<String> adapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,pools);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerChoosePool.setAdapter(adapter);
     }
 
     public String measureOxygen() {
