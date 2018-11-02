@@ -86,7 +86,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center_horizontal"
                     android:text="@string/feed"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimaryDark" />
@@ -110,7 +110,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center_horizontal"
                     android:text="@string/spawning"
                     android:textColor="@color/colorPrimaryDark" />
             </LinearLayout>

@@ -22,13 +22,18 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.submit_btn)
     Button mButtonSubmit;
     static String email="",password="";
+    String sessionId="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
+        sessionId= getIntent().getStringExtra("EXTRA_SESSION_ID");
+        if(sessionId!=null && sessionId.equals("0")){
+            email="";
+            password="";
+        }
 
 if(!email.equals("") && !password.equals("")){
     Intent intent = new Intent(LoginActivity.this, MainActivity.class);

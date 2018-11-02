@@ -1,29 +1,29 @@
 <resources>
     <string name="app_name">FishFarm</string>
     <!-- Strings related to MainActivity -->
-    <string name="temperature">Виміряти температуру</string>
-    <string name="water_condition">Виміряти стан води</string>
-    <string name="feed">Погодувати</string>
-    <string name="spawning">Нерест</string>
-    <string name="title_activity_login">Sign in</string>
+    <string name="temperature">Measure temperature</string>
+    <string name="water_condition">Measure water condition</string>
+    <string name="feed">Feed</string>
+    <string name="spawning">Spawning</string>
+    <!--<string name="title_activity_login">Sign in</string>-->
 
     <!-- Strings related to TemperatureActivity -->
-    <string name="measure">Виміряти</string>
+    <string name="measure" translatable="false">Measure</string>
 
     <!-- Strings related to WaterConditioActivity -->
-    <string name="date_last_change">Дата останньої \nзміни води</string>
-    <string name="change_data">Змінити дату</string>
-    <string name="measure_oxygen">Виміряти \nрівень кисню</string>
+    <string name="date_last_change">Last date of \nchanging water</string>
+    <string name="change_data">Change date</string>
+    <string name="measure_oxygen">Measure \noxygen level</string>
 
     <!-- Strings related to FeedActivity -->
-    <string name="last_feed_date">Дата останнього \nгодування</string>
-    <string name="fed">Погодовано!</string>
+    <string name="last_feed_date">Last date \nof feeding</string>
+    <string name="fed">Fed!</string>
 
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Пароль</string>
-    <string name="action_sign_in_short">Увійти</string>
+    <string name="prompt_password">Passwod</string>
+    <string name="action_sign_in_short">Log in</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
@@ -31,9 +31,13 @@
 
 
     <!-- Strings related to SpawningActivity -->
-    <string name="data_temperature">Середня температура \nу бассейні</string>
-    <string name="data_water_condition">Середній стан води \nу бассейні</string>
-    <string name="data_fish_age">Вік риби</string>
-    <string name="can">Нерест можливий</string>
-    <string name="cannot">Нерест не можливий</string>
+    <string name="data_temperature">Average temperature \nin the pool</string>
+    <string name="data_water_condition">Average condition \nof water in the pool</string>
+    <string name="data_fish_age">Fish age</string>
+    <string name="can">Spawning is possible</string>
+    <string name="cannot">Spawning is not possible</string>
+
+    <!-- Strings related to Menu -->
+    <string name="change_locale">Change Locale</string>
+    <string name="log_out">Log out</string>
 </resources>
