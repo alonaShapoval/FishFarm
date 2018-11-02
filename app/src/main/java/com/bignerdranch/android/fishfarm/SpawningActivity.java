@@ -1,5 +1,6 @@
 package com.bignerdranch.android.fishfarm;
 
+import android.content.Intent;
 import android.provider.SyncStateContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,7 +28,7 @@ public class SpawningActivity extends AppCompatActivity {
     int fishAge;
     @BindView(R.id.choose_pool)
     Spinner mSpinnerChoosePool;
-    ArrayList<String> pools=new ArrayList<>();
+    ArrayList<String> pools = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class SpawningActivity extends AppCompatActivity {
         } else {
             mTextViewSpawning.setText(R.string.cannot);
         }
-        ArrayAdapter<String> adapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,pools);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, pools);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinnerChoosePool.setAdapter(adapter);
     }
@@ -69,5 +70,11 @@ public class SpawningActivity extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(SpawningActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }

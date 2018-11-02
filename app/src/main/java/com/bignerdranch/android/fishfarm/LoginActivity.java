@@ -21,36 +21,36 @@ public class LoginActivity extends AppCompatActivity {
     EditText mEditTextPassword;
     @BindView(R.id.submit_btn)
     Button mButtonSubmit;
-    static String email="",password="";
-    String sessionId="";
+    static String email = "", password = "";
+    String sessionId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        sessionId= getIntent().getStringExtra("EXTRA_SESSION_ID");
-        if(sessionId!=null && sessionId.equals("0")){
-            email="";
-            password="";
+        sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
+        if (sessionId != null && sessionId.equals("0")) {
+            email = "";
+            password = "";
         }
 
-if(!email.equals("") && !password.equals("")){
-    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-    startActivity(intent);
-    finish();
-}
+        if (!email.equals("") && !password.equals("")) {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
         mButtonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                email=mEditTextEmail.getText().toString();
-                password=mEditTextPassword.getText().toString();
+                email = mEditTextEmail.getText().toString();
+                password = mEditTextPassword.getText().toString();
 
-                if(!isEmailCorrect()){
+                if (!isEmailCorrect()) {
                     mEditTextEmail.setError("Не правильні дані");
-                }else if(!isPasswordCorrect()){
+                } else if (!isPasswordCorrect()) {
                     mEditTextPassword.setError("Не правильні дані");
-                }else{
+                } else {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -59,22 +59,6 @@ if(!email.equals("") && !password.equals("")){
             }
         });
         mEditTextEmail.setOnKeyListener(new View.OnKeyListener() {
-                                               public boolean onKey(View v, int keyCode, KeyEvent event) {
-                                                   if (event.getAction() == KeyEvent.ACTION_DOWN &&
-                                                           (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                                                       // сохраняем текст, введенный до нажатия Enter в переменную
-
-
-                                                       InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                                       imm.hideSoftInputFromWindow(mEditTextEmail.getWindowToken(), 0);
-
-                                                       return true;
-                                                   }
-                                                   return false;
-                                               }
-                                           }
-        );
-        mEditTextPassword.setOnKeyListener(new View.OnKeyListener() {
                                             public boolean onKey(View v, int keyCode, KeyEvent event) {
                                                 if (event.getAction() == KeyEvent.ACTION_DOWN &&
                                                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
@@ -82,7 +66,7 @@ if(!email.equals("") && !password.equals("")){
 
 
                                                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                                    imm.hideSoftInputFromWindow(mEditTextPassword.getWindowToken(), 0);
+                                                    imm.hideSoftInputFromWindow(mEditTextEmail.getWindowToken(), 0);
 
                                                     return true;
                                                 }
@@ -90,27 +74,45 @@ if(!email.equals("") && !password.equals("")){
                                             }
                                         }
         );
+        mEditTextPassword.setOnKeyListener(new View.OnKeyListener() {
+                                               public boolean onKey(View v, int keyCode, KeyEvent event) {
+                                                   if (event.getAction() == KeyEvent.ACTION_DOWN &&
+                                                           (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                                                       // сохраняем текст, введенный до нажатия Enter в переменную
+
+
+                                                       InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                                       imm.hideSoftInputFromWindow(mEditTextPassword.getWindowToken(), 0);
+
+                                                       return true;
+                                                   }
+                                                   return false;
+                                               }
+                                           }
+        );
     }
-     public boolean isEmailCorrect(){
-        if(email.equals("")){
-             mEditTextEmail.setError("Це поле не може бути пустим");
+
+    public boolean isEmailCorrect() {
+        if (email.equals("")) {
+            mEditTextEmail.setError("Це поле не може бути пустим");
             return false;
         }
 
-        if(email.equals("Shapoval")){
+        if (email.equals("Shapoval")) {
             return true;
         }
         return false;
-     }
-     public boolean isPasswordCorrect(){
-         if(password.equals("")){
-             mEditTextPassword.setError("Це поле не може бути пустим");
-             return false;
-         }
+    }
 
-         if(password.equals("111111")){
-             return true;
-         }
-         return false;
-     }
+    public boolean isPasswordCorrect() {
+        if (password.equals("")) {
+            mEditTextPassword.setError("Це поле не може бути пустим");
+            return false;
+        }
+
+        if (password.equals("111111")) {
+            return true;
+        }
+        return false;
+    }
 }

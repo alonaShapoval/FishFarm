@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout mLinearLayoutFeeding;
     @BindView(R.id.spawning)
     LinearLayout mLinearLayoutSpawning;
-    static String language ="uk";
+    static String language = "uk";
 
 
     @Override
@@ -68,48 +68,48 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
         return true;
     }
+
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    public boolean onOptionsItemSelected(MenuItem item) {
         // Операции для выбранного пункта меню
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.change_locale:
-               changeLocale();
+                changeLocale();
                 return true;
             case R.id.log_out:
-               LogOut();
+                LogOut();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    public void changeLocale(){
-                Locale locale = null;
+    public void changeLocale() {
+        Locale locale = null;
         if (language.equalsIgnoreCase("en")) {
             locale = new Locale("en");
         } else if (language.equalsIgnoreCase("uk")) {
             locale = new Locale("uk");
-            language="en";
+            language = "en";
         }
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config, null);
-        Intent intent=new Intent(MainActivity.this,MainActivity.class);
+        Intent intent = new Intent(MainActivity.this, MainActivity.class);
         startActivity(intent);
     }
-    public void LogOut(){
-        Toast.makeText(MainActivity.this,"Log out",Toast.LENGTH_SHORT).show();
-        Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+
+    public void LogOut() {
+        Toast.makeText(MainActivity.this, "Log out", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         intent.putExtra("EXTRA_SESSION_ID", "0");
         startActivity(intent);
     }

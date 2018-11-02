@@ -3,6 +3,7 @@ package com.bignerdranch.android.fishfarm;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -42,7 +43,7 @@ public class WaterConditionActivity extends AppCompatActivity {
 
     @BindView(R.id.choose_pool)
     Spinner mSpinnerChoosePool;
-    ArrayList<String> pools=new ArrayList<>();
+    ArrayList<String> pools = new ArrayList<>();
     final Timer timer = new Timer();
 
     @Override
@@ -53,7 +54,7 @@ public class WaterConditionActivity extends AppCompatActivity {
         pools.add("Басейн №1");
         pools.add("Басейн №2");
 
-setInitialDate();
+        setInitialDate();
         mButtonChangeDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,7 +79,7 @@ setInitialDate();
 
             }
         });
-        ArrayAdapter<String> adapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,pools);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, pools);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinnerChoosePool.setAdapter(adapter);
     }
@@ -117,5 +118,10 @@ setInitialDate();
         datePickerDialog.show();
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(WaterConditionActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
 
 }

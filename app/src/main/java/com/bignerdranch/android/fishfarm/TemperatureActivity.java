@@ -1,5 +1,6 @@
 package com.bignerdranch.android.fishfarm;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +25,7 @@ public class TemperatureActivity extends AppCompatActivity {
     Button mButtonTemperatureMeasuring;
     @BindView(R.id.choose_pool)
     Spinner mSpinnerChoosePool;
-    ArrayList<String> pools=new ArrayList<>();
+    ArrayList<String> pools = new ArrayList<>();
 
 
     @Override
@@ -41,7 +42,7 @@ public class TemperatureActivity extends AppCompatActivity {
                 mProgressBar.setVisibility(View.VISIBLE);
                 mProgressBar.setIndeterminate(true);
 
-               final Handler h = new Handler() {
+                final Handler h = new Handler() {
                     @Override
                     public void handleMessage(Message message) {
                         mTextViewDegreeTemperature.setText(measureTemperature());
@@ -54,7 +55,7 @@ public class TemperatureActivity extends AppCompatActivity {
 
             }
         });
-        ArrayAdapter<String> adapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,pools);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, pools);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinnerChoosePool.setAdapter(adapter);
 
@@ -63,6 +64,12 @@ public class TemperatureActivity extends AppCompatActivity {
 
     public String measureTemperature() {
         return "15 C";
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(TemperatureActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
 }

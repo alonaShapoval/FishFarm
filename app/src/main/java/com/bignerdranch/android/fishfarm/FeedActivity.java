@@ -1,5 +1,6 @@
 package com.bignerdranch.android.fishfarm;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.app.AlertDialog;
@@ -23,21 +24,21 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class FeedActivity extends AppCompatActivity {
-@BindView(R.id.feed_date)
+    @BindView(R.id.feed_date)
     TextView mTextViewFeedDate;
-@BindView(R.id.progress_bar)
+    @BindView(R.id.progress_bar)
     ProgressBar mProgreesBar;
-@BindView(R.id.feed)
-Button mButtonFeed;
+    @BindView(R.id.feed)
+    Button mButtonFeed;
     private int progressStatus = 0;
     private Handler handler = new Handler();
 
-    static String lastDateFeed="31-10-2018\n22:17:44";
-//    @BindView(R.id.show_that_fed)
+    static String lastDateFeed = "31-10-2018\n22:17:44";
+    //    @BindView(R.id.show_that_fed)
 //    TextView mTextViewShowFed;
-@BindView(R.id.choose_pool)
-Spinner mSpinnerChoosePool;
-    ArrayList<String> pools=new ArrayList<>();
+    @BindView(R.id.choose_pool)
+    Spinner mSpinnerChoosePool;
+    ArrayList<String> pools = new ArrayList<>();
 
 
     @Override
@@ -80,37 +81,45 @@ Spinner mSpinnerChoosePool;
                             });
 
                         }
-                       // mTextViewShowFed.setText(R.string.fed);
+                        // mTextViewShowFed.setText(R.string.fed);
                         Looper.prepare();
-                        Toast.makeText(FeedActivity.this, R.string.fed,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(FeedActivity.this, R.string.fed, Toast.LENGTH_SHORT).show();
                         Looper.loop();
                     }
                 };
                 t.start();
             }
-       });
-        ArrayAdapter<String> adapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,pools);
+        });
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, pools);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinnerChoosePool.setAdapter(adapter);
 
     }
-    public void feedFish(){
+
+    public void feedFish() {
 
     }
-    public String setCurrDate(){
+
+    public String setCurrDate() {
         final Calendar calendar = Calendar.getInstance();
-        StringBuilder date=new StringBuilder();
+        StringBuilder date = new StringBuilder();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 
         date.append(calendar.get(Calendar.DAY_OF_MONTH));
         date.append("-");
-        date.append(calendar.get(Calendar.MONTH)+1);
+        date.append(calendar.get(Calendar.MONTH) + 1);
         date.append("-");
         date.append(calendar.get(Calendar.YEAR));
         date.append("\n");
         date.append(sdf.format(calendar.getTime()));
-        lastDateFeed=date.toString();
-       return date.toString();
+        lastDateFeed = date.toString();
+        return date.toString();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(FeedActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
 
