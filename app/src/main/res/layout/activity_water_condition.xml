@@ -8,8 +8,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#e6e6e6">
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -19,27 +20,26 @@
             />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:gravity="center"
+                android:layout_gravity="center_horizontal"
                 android:text="@string/date_last_change"
-                android:textColor="@color/blue"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:textColor="@color/blue"
+               android:layout_gravity="center_horizontal"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
 
@@ -47,32 +47,30 @@
 
         <Button
             android:id="@+id/change_date"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:background="@drawable/button_border"
+            android:background="@drawable/border_for_log_in"
             android:text="@string/change_data"
-            android:textSize="10sp" />
+            android:textSize="17sp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/grey_"
+            />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
-            android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
-            <Button
-                android:id="@+id/measure_oxygen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_border"
-                android:text="@string/measure_oxygen"
-                android:textSize="10sp" />
+            android:orientation="vertical">
+
+
 
             <ProgressBar
                 android:id="@+id/progress_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
                 android:theme="@style/CircularProgress"
                 android:visibility="invisible" />
 
@@ -80,16 +78,23 @@
                 android:id="@+id/oxygen_data"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
-                android:textColor="@color/blue"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
+               android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                />
+            <Button
+                android:id="@+id/measure_oxygen"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:src="@drawable/water" />
+                android:background="@drawable/border_for_log_in"
+                android:text="@string/measure_oxygen"
+                android:textSize="17sp"
+                android:textColor="@color/grey_"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+
+                />
 
         </LinearLayout>
     </LinearLayout>

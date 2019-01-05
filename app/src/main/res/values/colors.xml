@@ -6,4 +6,9 @@
     <color name="colorLightBlue">#82efee</color>
     <color name="blue">#009ab0</color>
     <color name="green">#398500</color>
+    <color name="color_for_log_btn">#1ab2ff</color>
+    <color name="grey_">#595959</color>
+    <color name="black">#000000</color>
+    <color name="color_for_fon">#e6e6e6</color>
+
 </resources>

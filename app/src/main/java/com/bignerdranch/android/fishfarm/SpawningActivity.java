@@ -39,7 +39,7 @@ public class SpawningActivity extends AppCompatActivity {
         pools.add("Басейн №2");
         mTextViewDataTemperature.setText(getAverageTemperature() + " C");
         mTextViewWaterCondition.setText(getAverageWaterCondition() + " %");
-        mTextViewFishAge.setText(getFishAge() + " років");
+        mTextViewFishAge.setText(getFishAge() + " years");
         if (isPossibleSpawning()) {
             mTextViewSpawning.setText(R.string.can);
         } else {

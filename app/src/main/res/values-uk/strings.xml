@@ -12,12 +12,12 @@
     <string name="measure" translatable="false">Виміряти</string>
 
     <!-- Strings related to WaterConditioActivity -->
-    <string name="date_last_change">Дата останньої \nзміни води</string>
+    <string name="date_last_change">Дата останньої зміни води</string>
     <string name="change_data">Змінити дату</string>
-    <string name="measure_oxygen">Виміряти \nрівень кисню</string>
+    <string name="measure_oxygen">Виміряти рівень кисню</string>
 
     <!-- Strings related to FeedActivity -->
-    <string name="last_feed_date">Дата останнього \nгодування</string>
+    <string name="last_feed_date">Дата останнього годування:</string>
     <string name="fed">Погодовано!</string>
 
 
@@ -32,9 +32,9 @@
 
 
     <!-- Strings related to SpawningActivity -->
-    <string name="data_temperature">Середня температура \nу бассейні</string>
-    <string name="data_water_condition">Середній стан води \nу бассейні</string>
-    <string name="data_fish_age">Вік риби</string>
+    <string name="data_temperature">Середня температура \nу бассейні:</string>
+    <string name="data_water_condition">Середній стан води \nу бассейні:</string>
+    <string name="data_fish_age">Вік риби:</string>
     <string name="can">Нерест можливий</string>
     <string name="cannot">Нерест не можливий</string>
 

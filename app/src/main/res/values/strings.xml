@@ -11,18 +11,18 @@
     <string name="measure" translatable="false">Measure</string>
 
     <!-- Strings related to WaterConditioActivity -->
-    <string name="date_last_change">Last date of \nchanging water</string>
+    <string name="date_last_change">Last date of changing water</string>
     <string name="change_data">Change date</string>
-    <string name="measure_oxygen">Measure \noxygen level</string>
+    <string name="measure_oxygen">Measure oxygen level</string>
 
     <!-- Strings related to FeedActivity -->
-    <string name="last_feed_date">Last date \nof feeding</string>
+    <string name="last_feed_date">Last date of feeding:</string>
     <string name="fed">Fed!</string>
 
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Passwod</string>
+    <string name="prompt_password">Password</string>
     <string name="action_sign_in_short">Log in</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
@@ -31,9 +31,9 @@
 
 
     <!-- Strings related to SpawningActivity -->
-    <string name="data_temperature">Average temperature \nin the pool</string>
-    <string name="data_water_condition">Average condition \nof water in the pool</string>
-    <string name="data_fish_age">Fish age</string>
+    <string name="data_temperature">Average temperature \nin the pool:</string>
+    <string name="data_water_condition">Average condition \nof water in the pool:</string>
+    <string name="data_fish_age">Fish age:</string>
     <string name="can">Spawning is possible</string>
     <string name="cannot">Spawning is not possible</string>
 

@@ -8,39 +8,8 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/last_feed_date"
-        android:gravity="center"
-        android:textColor="@color/blue"
-        android:textSize="20sp"/>
-        <TextView
-            android:id="@+id/feed_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/blue"
-            android:layout_marginLeft="50dp"
-            />
-</LinearLayout>
-    <ProgressBar
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/progress_bar"
-        android:layout_marginTop="150dp"
-        android:layout_gravity="center"
-        style="@style/HorizontalProgress"
-        android:indeterminate="false"
-        android:max="100"
-        android:progress="10"
-        />
+    android:orientation="vertical"
+    android:background="@color/color_for_fon">
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,21 +17,60 @@
         android:layout_gravity="center"
         android:id="@+id/choose_pool"
         />
-    <Button
+    <LinearLayout
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/last_feed_date"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/feed_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+           android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:src="@drawable/feed"
+            android:layout_marginTop="40dp"/>
+</LinearLayout>
+    <ProgressBar
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress_bar"
+android:layout_marginTop="40dp"
+        android:layout_gravity="center"
+        style="@style/HorizontalProgress"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="10"
+        />
+    <Button
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:id="@+id/feed"
         android:text="@string/feed"
-        android:background="@drawable/button_border"
+        android:background="@drawable/border_for_log_in"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"/>
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/show_that_fed"-->
-        <!--android:textColor="@color/green"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:textSize="20sp"-->
-        <!--android:layout_marginTop="30dp"/>-->
+        android:layout_marginTop="50dp"
+        android:textColor="@color/grey_"
+        android:textSize="17sp"
+        />
+
+
+
+
 </LinearLayout>
 </android.support.constraint.ConstraintLayout>

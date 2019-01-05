@@ -24,8 +24,8 @@
             android:layout_height="wrap_content"
             android:text="@string/data_temperature"
             android:textSize="20sp"
-            android:gravity="center"
-            android:textColor="@color/blue"
+
+            android:textColor="@color/black"
             android:layout_marginTop="30dp"/>
         <TextView
             android:layout_width="wrap_content"
@@ -33,51 +33,51 @@
             android:id="@+id/date_temperature"
             android:textSize="20sp"
             android:gravity="center"
-            android:textColor="@color/blue"
+            android:textColor="@color/black"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="40dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/data_water_condition"
             android:textSize="20sp"
-            android:gravity="center"
-            android:textColor="@color/blue"
-            android:layout_marginTop="30dp"/>
+
+            android:textColor="@color/black"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/date_water_condition"
             android:textSize="20sp"
-            android:gravity="center"
-            android:textColor="@color/blue"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="40dp"/>
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black"
+           />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/data_fish_age"
             android:textSize="20sp"
             android:gravity="center"
-            android:textColor="@color/blue"
-            android:layout_marginTop="30dp"/>
+            android:textColor="@color/black"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/date_fish_age"
             android:textSize="20sp"
-            android:gravity="center"
-            android:textColor="@color/blue"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="40dp"/>
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black"
+            />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -89,7 +89,7 @@
             android:id="@+id/possible_spawning"
             android:textSize="20sp"
             android:gravity="center"
-            android:textColor="@color/blue"
+            android:textColor="@color/black"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="40dp"/>
     </LinearLayout>

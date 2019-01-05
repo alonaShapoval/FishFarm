@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
+import com.android.volley.Request;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -28,6 +30,7 @@ public class TemperatureActivity extends AppCompatActivity {
     ArrayList<String> pools = new ArrayList<>();
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,23 +38,12 @@ public class TemperatureActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         pools.add("Басейн №1");
         pools.add("Басейн №2");
+        getPools();
 
         mButtonTemperatureMeasuring.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mProgressBar.setVisibility(View.VISIBLE);
-                mProgressBar.setIndeterminate(true);
-
-                final Handler h = new Handler() {
-                    @Override
-                    public void handleMessage(Message message) {
-                        mTextViewDegreeTemperature.setText(measureTemperature());
-
-                        mProgressBar.setVisibility(View.INVISIBLE);
-                    }
-                };
-                h.sendMessageDelayed(new Message(), 1000);
-
+                measureTemperature();
 
             }
         });
@@ -59,17 +51,47 @@ public class TemperatureActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinnerChoosePool.setAdapter(adapter);
 
-
     }
 
-    public String measureTemperature() {
-        return "15 C";
+    public void measureTemperature() {
+        Temperature t = new Temperature( this, Request.Method.GET);
+
+        t.getAllTemperature(new Temperature.FishFarmServiceCallback() {
+            @Override
+            public void onResult(String answer) {
+                if (!answer.equals("Error")) {
+                    mTextViewDegreeTemperature.setText(formatValue(answer));
+                } else {
+                    mTextViewDegreeTemperature.setText("Error");
+                }
+            }
+        });
+
+    }
+    public void getPools(){
+        Temperature t = new Temperature( this, Request.Method.GET);
+
+        t.getPools(new Temperature.FishFarmServiceCallback() {
+            @Override
+            public void onResult(String answer) {
+                if (!answer.equals("Error")) {
+                    System.out.println("Pools"+answer);
+                } else {
+                    mTextViewDegreeTemperature.setText("Error");
+                }
+            }
+        });
     }
 
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(TemperatureActivity.this, MainActivity.class);
         startActivity(intent);
+    }
+
+    private String formatValue(String val){
+
+       return "Current temperature: "+val+" C";
     }
 
 }

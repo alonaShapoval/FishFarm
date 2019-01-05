@@ -69,7 +69,7 @@ public class WaterConditionActivity extends AppCompatActivity {
                 final Handler h = new Handler() {
                     @Override
                     public void handleMessage(Message message) {
-                        mTextViewOxygenData.setText(measureOxygen());
+                        mTextViewOxygenData.setText("Current value of oxygen: "+ measureOxygen());
 
                         mProgressBar.setVisibility(View.INVISIBLE);
                     }

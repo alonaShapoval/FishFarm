@@ -43,13 +43,13 @@ public class LoginActivity extends AppCompatActivity {
         mButtonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                email = mEditTextEmail.getText().toString();
-                password = mEditTextPassword.getText().toString();
+                email = mEditTextEmail.getText().toString().trim();
+                password = mEditTextPassword.getText().toString().trim();
 
                 if (!isEmailCorrect()) {
-                    mEditTextEmail.setError("Не правильні дані");
+                    mEditTextEmail.setError("Неправильні дані");
                 } else if (!isPasswordCorrect()) {
-                    mEditTextPassword.setError("Не правильні дані");
+                    mEditTextPassword.setError("Неправильні дані");
                 } else {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);

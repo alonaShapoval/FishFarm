@@ -33,7 +33,7 @@ public class FeedActivity extends AppCompatActivity {
     private int progressStatus = 0;
     private Handler handler = new Handler();
 
-    static String lastDateFeed = "31-10-2018\n22:17:44";
+    static String lastDateFeed = "31-10-2018 22:17:44";
     //    @BindView(R.id.show_that_fed)
 //    TextView mTextViewShowFed;
     @BindView(R.id.choose_pool)
@@ -110,7 +110,7 @@ public class FeedActivity extends AppCompatActivity {
         date.append(calendar.get(Calendar.MONTH) + 1);
         date.append("-");
         date.append(calendar.get(Calendar.YEAR));
-        date.append("\n");
+        date.append(" ");
         date.append(sdf.format(calendar.getTime()));
         lastDateFeed = date.toString();
         return date.toString();
