@@ -13,17 +13,17 @@ import com.android.volley.toolbox.Volley;
  * Created by User on 005 05.01.19.
  */
 
-public class Pool {
+public class WaterCondition {
     private Context mContext;
     private int method;
 
-    public Pool(Context mContext, int method) {
+    public WaterCondition(Context mContext, int method) {
         this.mContext = mContext;
         this.method = method;
     }
-    public void getPools(@NonNull final FishFarmServiceCallback callback){
+    public void getOxygen(@NonNull final FishFarmServiceCallback callback){
         RequestQueue queue = Volley.newRequestQueue(mContext);
-        String url =Constants.URL+"pool?param=id";
+        String url =Constants.URL+"average_water_condition";
 
         StringRequest stringRequest = new StringRequest(method, url,
                 new Response.Listener<String>() {
@@ -47,4 +47,5 @@ public class Pool {
     public interface FishFarmServiceCallback {
         void onResult(String result);
     }
+
 }

@@ -18,6 +18,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.android.volley.Request;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Timer;
@@ -51,8 +53,8 @@ public class WaterConditionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_water_condition);
         ButterKnife.bind(this);
-        pools.add("Басейн №1");
-        pools.add("Басейн №2");
+        pools.add("Pools");
+        getPools();
 
         setInitialDate();
         mButtonChangeDate.setOnClickListener(new View.OnClickListener() {
@@ -64,19 +66,7 @@ public class WaterConditionActivity extends AppCompatActivity {
         mButtonMeasureOxygen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mProgressBar.setVisibility(View.VISIBLE);
-                mProgressBar.setIndeterminate(true);
-                final Handler h = new Handler() {
-                    @Override
-                    public void handleMessage(Message message) {
-                        mTextViewOxygenData.setText("Current value of oxygen: "+ measureOxygen());
-
-                        mProgressBar.setVisibility(View.INVISIBLE);
-                    }
-                };
-                h.sendMessageDelayed(new Message(), 1000);
-
-
+                measureOxygen();
             }
         });
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, pools);
@@ -84,9 +74,6 @@ public class WaterConditionActivity extends AppCompatActivity {
         mSpinnerChoosePool.setAdapter(adapter);
     }
 
-    public String measureOxygen() {
-        return "30%";
-    }
 
     public void setInitialDate() {
         final Calendar calendar = Calendar.getInstance();
@@ -118,10 +105,45 @@ public class WaterConditionActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
+    public void measureOxygen() {
+        WaterCondition t = new WaterCondition(this, Request.Method.GET);
+
+        t.getOxygen(new WaterCondition.FishFarmServiceCallback() {
+            @Override
+            public void onResult(String answer) {
+                if (!answer.equals("Error")) {
+                    mTextViewOxygenData.setText(formatValue(answer));
+                } else {
+                    mTextViewOxygenData.setText("30%");
+                }
+            }
+        });
+
+    }
+
+    public void getPools() {
+        Pool t = new Pool(this, Request.Method.GET);
+
+        t.getPools(new Pool.FishFarmServiceCallback() {
+            @Override
+            public void onResult(String answer) {
+                if (!answer.equals("Error")) {
+                    pools.add("Pools #" + answer);
+                } else {
+                    mTextViewOxygenData.setText("Error");
+                }
+            }
+        });
+    }
+
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(WaterConditionActivity.this, MainActivity.class);
         startActivity(intent);
     }
 
+    private String formatValue(String val) {
+
+        return "Current value of oxygen: " + val + " %";
+    }
 }

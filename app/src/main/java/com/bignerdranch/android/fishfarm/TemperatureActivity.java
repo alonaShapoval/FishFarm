@@ -30,14 +30,12 @@ public class TemperatureActivity extends AppCompatActivity {
     ArrayList<String> pools = new ArrayList<>();
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_temperature);
         ButterKnife.bind(this);
-        pools.add("Басейн №1");
-        pools.add("Басейн №2");
+        pools.add("Pools");
         getPools();
 
         mButtonTemperatureMeasuring.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +52,7 @@ public class TemperatureActivity extends AppCompatActivity {
     }
 
     public void measureTemperature() {
-        Temperature t = new Temperature( this, Request.Method.GET);
+        Temperature t = new Temperature(this, Request.Method.GET);
 
         t.getAllTemperature(new Temperature.FishFarmServiceCallback() {
             @Override
@@ -68,14 +66,15 @@ public class TemperatureActivity extends AppCompatActivity {
         });
 
     }
-    public void getPools(){
-        Temperature t = new Temperature( this, Request.Method.GET);
 
-        t.getPools(new Temperature.FishFarmServiceCallback() {
+    public void getPools() {
+        Pool t = new Pool(this, Request.Method.GET);
+
+        t.getPools(new Pool.FishFarmServiceCallback() {
             @Override
             public void onResult(String answer) {
                 if (!answer.equals("Error")) {
-                    System.out.println("Pools"+answer);
+                    pools.add("Pools #" + answer);
                 } else {
                     mTextViewDegreeTemperature.setText("Error");
                 }
@@ -89,9 +88,9 @@ public class TemperatureActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private String formatValue(String val){
+    private String formatValue(String val) {
 
-       return "Current temperature: "+val+" C";
+        return "Current temperature: " + val + " C";
     }
 
 }

@@ -1,5 +1,6 @@
 package com.bignerdranch.android.fishfarm;
 
+import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,9 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.android.volley.Request;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     Button mButtonSubmit;
     static String email = "", password = "";
     String sessionId = "";
+    boolean resultAnswer = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,16 +50,14 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 email = mEditTextEmail.getText().toString().trim();
                 password = mEditTextPassword.getText().toString().trim();
-
+                checkLogin();
+                System.out.println("Resultanswer1" + resultAnswer);
                 if (!isEmailCorrect()) {
                     mEditTextEmail.setError("Неправильні дані");
                 } else if (!isPasswordCorrect()) {
                     mEditTextPassword.setError("Неправильні дані");
-                } else {
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
                 }
+
 
             }
         });
@@ -92,16 +95,34 @@ public class LoginActivity extends AppCompatActivity {
         );
     }
 
+    public void checkLogin() {
+        Login login = new Login(this, Request.Method.POST, email, password);
+
+        login.checkLogin(new Login.FishFarmServiceCallback() {
+            @Override
+            public void onResult(String result) {
+                if (result.equals("error")) {
+                    Toast.makeText(LoginActivity.this, "Invalid input data", Toast.LENGTH_LONG).show();
+                } else {
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+
+            }
+        });
+
+    }
+
     public boolean isEmailCorrect() {
         if (email.equals("")) {
             mEditTextEmail.setError("Це поле не може бути пустим");
             return false;
+        } else if (!email.matches("^(.+)@(.+)$")) {
+            mEditTextEmail.setError("Не відповідає формату email");
         }
 
-        if (email.equals("Shapoval")) {
-            return true;
-        }
-        return false;
+        return true;
     }
 
     public boolean isPasswordCorrect() {
@@ -110,9 +131,6 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         }
 
-        if (password.equals("111111")) {
-            return true;
-        }
-        return false;
+        return true;
     }
 }

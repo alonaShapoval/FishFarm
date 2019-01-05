@@ -1,5 +1,6 @@
 package com.bignerdranch.android.fishfarm;
 
+import android.app.DownloadManager;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
@@ -13,6 +14,8 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -88,6 +91,7 @@ public class FeedActivity extends AppCompatActivity {
                     }
                 };
                 t.start();
+                feedFish();
             }
         });
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, pools);
@@ -97,7 +101,12 @@ public class FeedActivity extends AppCompatActivity {
     }
 
     public void feedFish() {
-
+        Feed f= new Feed(this, Request.Method.POST);
+        try {
+            f.feed();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public String setCurrDate() {
